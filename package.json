@@ -1,0 +1,24 @@
+{
+  "name": "friend-finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColeMiller21/Friend-Finder.git"
+  },
+  "author": "Cole Miller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ColeMiller21/Friend-Finder/issues"
+  },
+  "homepage": "https://github.com/ColeMiller21/Friend-Finder#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  }
+}
