@@ -7,13 +7,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://kit.fontawesome.com/64343a162e.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="../../css/style.css" />
     <title>Friend Finder</title>
 </head>
+<style>
+    #submit {
+        margin-bottom: 20px;
+    }
+
+    .questions {
+        margin-bottom: 15px;
+    }
+
+    .question-title {
+        font-weight: bolder;
+    }
+</style>
+
 
 <body>
     <div class="container">
@@ -159,29 +172,24 @@
 
     <script>
 
-
-
-
         $(document).on("click", "#submit", function (event) {
             event.preventDefault();
 
             var userName = $("#name").val().trim();
             var userPhoto = $("#photo").val().trim();
             var userChoices = [];
-
+            var newFriend;
             for (var i = 1; i < 11; i++) {
                 var question = $("#question" + i);
                 var selectedQues = parseInt(question.val());
                 userChoices.push(selectedQues)
             }
 
-
-
             for (var x = 0; x < userChoices.length; x++) {
                 if (Number.isNaN(userChoices[x]) === true) {
                     console.log("not finished!!!")
                 } else {
-                    var newFriend = {
+                    newFriend = {
                         name: userName,
                         photo: userPhoto,
                         choices: userChoices
@@ -193,9 +201,9 @@
             $.post("/api/data/friends", newFriend)
                 .then(function (data) {
                     console.log("survey.html", data);
+                    alert("adding new friend")
 
-                });
-
+                })
         })
 
     </script>
