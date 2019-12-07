@@ -4,32 +4,44 @@ var friendArray = require("../data/friends")
 module.exports = function (app) {
 
     app.get("/api/data/friends", function (req, res) {
-        return res.json(friendArray);
+        return res.send(friendArray);
     });
 
     app.post("/api/data/friends", function (req, res) {
         var newFriend = req.body;
         friendArray.push(newFriend)
+        var difference;
+        var totalDifference;
 
-
-        for (var i = 0; i < friendArray.length; i++) {
-            //console.log("just the choices out of the friend array " + friendArray[i].choices);
+        function myFunc(total, num) {
+            return total + num
         }
 
-        friendArray.forEach(function (element) {
-            console.log("THIS IS ELEMENT " + element.choices)
-            console.log("------------------------------------");
-            console.log(element[0])
+        var lowestNum = 50;
+        var matchIndex = -1;
+        friendArray.forEach(function (element, index) {
+            var allChoices = element.choices
+
+
+            var diffArray = [];
+            for (var i = 0; i < newFriend.choices.length; i++) {
+                difference = Math.abs(newFriend.choices[i] - allChoices[i])
+                diffArray.push(difference)
+
+            }
+
+            totalDifference = (diffArray.reduce(myFunc))
+
+            if (totalDifference < lowestNum) {
+                lowestNum = totalDifference;
+                matchIndex = index;
+            }
+
         })
-
-        console.log(friendArray)
-
-        return res.send(newFriend);
+        // this is the object of the matched person
+        var matchedFriend = friendArray[matchIndex]
+        return res.send(matchedFriend);
     });
-
-
-
-
 
 
     app.post("/api/clear", function (req, res) {

@@ -5,12 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+
+
+
     <script src="https://kit.fontawesome.com/64343a162e.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+
     <title>Friend Finder</title>
 </head>
 <style>
@@ -44,7 +54,9 @@
             <input type="text" class="form-control" id="photo" aria-describedby="basic-addon3">
         </div>
         <hr class="my-4">
+        <div id="allquestions">
 
+        </div>
         <div class="questions text-center">
             <h4 class="question-title">Question 1</h4>
             <p>Question is going to be typed here.........</p>
@@ -166,11 +178,53 @@
                 <option value="5">5(Strongly Agree)</option>
             </select>
         </div>
+        <div class="modal fade bd-example-modal-lg-account" tabindex="-1" role="dialog" id="match"
+            aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content modal-page">
+                    <div class="modal-body">
+                        <h1 id="match-name" class="text-center"></h1>
+                        <div id="match-image" class="text-center">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <button type="button" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
     </div>
 
     <script>
+
+        var questionArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+        function showQuestions() {
+            for (var i = 1; i < 11; i++) {
+                var questionDiv = $("<div>");
+                questionDiv.addClass("questions text-center");
+                var questionTitle = $("<h4>");
+                questionTitle.addClass("question-title");
+                questionTitle.text("Question " + [i]);
+
+                questionDiv.append(questionTitle);
+                $("#allquestions").append(questionDiv);
+
+                var questionP = $("<p>");
+                for (var j = 0; j < questionArray.length; j++) {
+                    questionP.text(questionArray[j]);
+                    console.log(questionArray[j])
+                }
+                var questionSelect = $("<select>");
+                questionSelect.attr("id", "question " + [i]);
+
+
+                questionP.append(questionSelect)
+                questionTitle.append(questionP)
+            }
+        }
+
 
         $(document).on("click", "#submit", function (event) {
             event.preventDefault();
@@ -186,7 +240,7 @@
             }
 
             for (var x = 0; x < userChoices.length; x++) {
-                if (Number.isNaN(userChoices[x]) === true) {
+                if (Number.isNaN(userChoices[x]) === NaN) {
                     console.log("not finished!!!")
                 } else {
                     newFriend = {
@@ -197,14 +251,21 @@
                 }
             }
 
-            console.log(newFriend)
             $.post("/api/data/friends", newFriend)
                 .then(function (data) {
-                    console.log("survey.html", data);
-                    alert("adding new friend")
+                    console.log(data)
+                    $("#match-name").text(data.name)
+                    var image = $("<img>");
+                    image.attr("src", data.photo);
+                    $("#match-image").append(image)
+
+                    $("#match").modal("show");
 
                 })
-        })
+
+
+        });
+
 
     </script>
 </body>
