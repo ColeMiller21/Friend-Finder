@@ -22,7 +22,6 @@ module.exports = function (app) {
         friendArray.forEach(function (element, index) {
             var allChoices = element.choices
 
-
             var diffArray = [];
             for (var i = 0; i < newFriend.choices.length; i++) {
                 difference = Math.abs(newFriend.choices[i] - allChoices[i])
