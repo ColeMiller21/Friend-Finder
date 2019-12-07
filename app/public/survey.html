@@ -57,6 +57,7 @@
         <div id="allquestions">
 
         </div>
+        <!--
         <div class="questions text-center">
             <h4 class="question-title">Question 1</h4>
             <p>Question is going to be typed here.........</p>
@@ -69,115 +70,8 @@
                 <option value="5">5(Strongly Agree)</option>
             </select>
         </div>
+        -->
 
-        <div class="questions text-center">
-            <h4 class="question-title">Question 2</h4>
-            <p>Question is going to be typed here.........</p>
-            <select id="question2">
-                <option selected="selected">Select an Option</option>
-                <option value="1">1(Strongly Disagree)</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5(Strongly Agree)</option>
-            </select>
-        </div>
-        <div class="questions text-center">
-            <h4 class="question-title">Question 3</h4>
-            <p>Question is going to be typed here.........</p>
-            <select id="question3">
-                <option selected="selected">Select an Option</option>
-                <option value="1">1(Strongly Disagree)</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5(Strongly Agree)</option>
-            </select>
-        </div>
-        <div class="questions text-center">
-            <h4 class="question-title">Question 4</h4>
-            <p>Question is going to be typed here.........</p>
-            <select id="question4">
-                <option selected="selected">Select an Option</option>
-                <option value="1">1(Strongly Disagree)</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5(Strongly Agree)</option>
-            </select>
-        </div>
-        <div class="questions text-center">
-            <h4 class="question-title">Question 5</h4>
-            <p>Question is going to be typed here.........</p>
-            <select id="question5">
-                <option selected="selected">Select an Option</option>
-                <option value="1">1(Strongly Disagree)</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5(Strongly Agree)</option>
-            </select>
-        </div>
-        <div class="questions text-center">
-            <h4 class="question-title">Question 6</h4>
-            <p>Question is going to be typed here.........</p>
-            <select id="question6">
-                <option selected="selected">Select an Option</option>
-                <option value="1">1(Strongly Disagree)</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5(Strongly Agree)</option>
-            </select>
-        </div>
-        <div class="questions text-center">
-            <h4 class="question-title">Question 7</h4>
-            <p>Question is going to be typed here.........</p>
-            <select id="question7">
-                <option selected="selected">Select an Option</option>
-                <option value="1">1(Strongly Disagree)</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5(Strongly Agree)</option>
-            </select>
-        </div>
-        <div class="questions text-center">
-            <h4 class="question-title">Question 8</h4>
-            <p>Question is going to be typed here.........</p>
-            <select id="question8">
-                <option selected="selected">Select an Option</option>
-                <option value="1">1(Strongly Disagree)</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5(Strongly Agree)</option>
-            </select>
-        </div>
-        <div class="questions text-center">
-            <h4 class="question-title">Question 9</h4>
-            <p>Question is going to be typed here.........</p>
-            <select id="question9">
-                <option selected="selected">Select an Option</option>
-                <option value="1">1(Strongly Disagree)</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5(Strongly Agree)</option>
-            </select>
-        </div>
-        <div class="questions text-center">
-            <h4 class="question-title">Question 10</h4>
-            <p>Question is going to be typed here.........</p>
-            <select id="question10">
-                <option selected="selected">Select an Option</option>
-                <option value="1">1(Strongly Disagree)</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5(Strongly Agree)</option>
-            </select>
-        </div>
         <div class="modal fade bd-example-modal-lg-account" tabindex="-1" role="dialog" id="match"
             aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -192,17 +86,19 @@
             </div>
         </div>
 
-
-        <button type="button" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
+        <div id="buttonDiv">
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
+        </div>
     </div>
 
     <script>
 
-        var questionArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+        var questionArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+        var isFinished = false
 
         function showQuestions() {
             for (var i = 1; i < 11; i++) {
-                var questionDiv = $("<div>");
+                var questionDiv = $("<div>")
                 questionDiv.addClass("questions text-center");
                 var questionTitle = $("<h4>");
                 questionTitle.addClass("question-title");
@@ -212,19 +108,44 @@
                 $("#allquestions").append(questionDiv);
 
                 var questionP = $("<p>");
-                for (var j = 0; j < questionArray.length; j++) {
-                    questionP.text(questionArray[j]);
-                    console.log(questionArray[j])
-                }
+                questionP.text(questionArray[i])
+
+                var selectDiv = $("<div>")
+                questionP.append(selectDiv);
                 var questionSelect = $("<select>");
-                questionSelect.attr("id", "question " + [i]);
+                selectDiv.append(questionSelect)
+                var option0 = $("<option>");
+                option0.attr("selected", "selected");
+                option0.text("Select an Option")
+                questionSelect.append(option0);
+                var option1 = $("<option>");
+                option1.attr("value", "1");
+                option1.text("1 (Strongly Disagree)");
+                questionSelect.append(option1);
+                var option2 = $("<option>");
+                option2.attr("value", "2");
+                option2.text("2");
+                questionSelect.append(option2)
+                var option3 = $("<option>");
+                option3.attr("value", "3");
+                option3.text("3");
+                questionSelect.append(option3)
+                var option4 = $("<option>");
+                option4.attr("value", "4");
+                option4.text("4");
+                questionSelect.append(option4);
+                var option5 = $("<option>");
+                option5.attr("value", "5");
+                option5.text("5 (Strongly Agree)")
+                questionSelect.append(option5);
 
-
+                questionSelect.attr("id", "question" + [i]);
                 questionP.append(questionSelect)
                 questionTitle.append(questionP)
             }
-        }
 
+        }
+        showQuestions();
 
         $(document).on("click", "#submit", function (event) {
             event.preventDefault();
@@ -238,11 +159,23 @@
                 var selectedQues = parseInt(question.val());
                 userChoices.push(selectedQues)
             }
+            var notFinished = $("<p>");
+            notFinished.text("You did not fill out everything!");
+            notFinished.addClass("text-center")
+            notFinished.css({ "color": "red", "display": "none", "visability": "hidden" })
+            $("#buttonDiv").prepend(notFinished)
+
 
             for (var x = 0; x < userChoices.length; x++) {
-                if (Number.isNaN(userChoices[x]) === NaN) {
-                    console.log("not finished!!!")
-                } else {
+
+                if (Number.isNaN(userChoices[x]) === true || userName === "" || userPhoto === "") {
+                    console.log("not finished!!!");
+                    $("#submit").css({ "background-color": "red" })
+                    notFinished.css({ "display": "block", "visability": "visibile" });
+                }
+
+                if (Number.isNaN(userChoices[x]) === false || userName.length > 0 || userPhoto.length > 0) {
+                    isFinished = true;
                     newFriend = {
                         name: userName,
                         photo: userPhoto,
@@ -251,19 +184,19 @@
                 }
             }
 
-            $.post("/api/data/friends", newFriend)
-                .then(function (data) {
-                    console.log(data)
-                    $("#match-name").text(data.name)
-                    var image = $("<img>");
-                    image.attr("src", data.photo);
-                    $("#match-image").append(image)
+            if (isFinished) {
+                $.post("/api/data/friends", newFriend)
+                    .then(function (data) {
+                        if (data) {
+                            $("#match-name").text(data.name)
+                            var image = $("<img>");
+                            image.attr("src", data.photo);
+                            $("#match-image").append(image)
+                        }
 
-                    $("#match").modal("show");
-
-                })
-
-
+                        $("#match").modal("show");
+                    })
+            }
         });
 
 
