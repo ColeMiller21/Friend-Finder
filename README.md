@@ -1,7 +1,5 @@
 # Friend-Finder
 
-![Gif of LIRI Bot](./readme-images/liri.gif)
-
 ## Table of Contents
 
 * [About the Project](#about-the-project)
