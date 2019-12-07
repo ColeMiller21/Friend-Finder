@@ -57,20 +57,6 @@
         <div id="allquestions">
 
         </div>
-        <!--
-        <div class="questions text-center">
-            <h4 class="question-title">Question 1</h4>
-            <p>Question is going to be typed here.........</p>
-            <select id="question1">
-                <option selected="selected">Select an Option</option>
-                <option value="1">1(Strongly Disagree)</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5(Strongly Agree)</option>
-            </select>
-        </div>
-        -->
 
         <div class="modal fade bd-example-modal-lg-account" tabindex="-1" role="dialog" id="match"
             aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -92,7 +78,6 @@
     </div>
 
     <script>
-
         var questionArray = ["0", "Do you think dogs are better than cats?",
             "Would the best vacation be at the beach?",
             "Would you rather go to a concert than a play?",
@@ -102,7 +87,7 @@
             "Do you think snowboarding is better than skiing?",
             "You would rather have a pitbull over a chihuahua?",
             "You prefer sun over snow?",
-            "Do you think pizza is better than pasta?"]
+            "Do you think pizza is better than pasta?"];
         var isFinished = false
 
         function showQuestions() {
@@ -172,7 +157,7 @@
             notFinished.text("You did not fill out everything!");
             notFinished.addClass("text-center")
             notFinished.css({ "color": "red", "display": "none", "visability": "hidden" })
-            $("#buttonDiv").prepend(notFinished)
+            $("#buttonDiv").prepend(notFinished);
 
 
             for (var x = 0; x < userChoices.length; x++) {
@@ -183,7 +168,7 @@
                     notFinished.css({ "display": "block", "visability": "visibile" });
                 }
 
-                if (Number.isNaN(userChoices[x]) === false || userName.length > 0 || userPhoto.length > 0) {
+                if (Number.isNaN(userChoices[x]) === false && userName.length > 0 && userPhoto.length > 0) {
                     isFinished = true;
                     newFriend = {
                         name: userName,
@@ -202,7 +187,6 @@
                             image.attr("src", data.photo);
                             $("#match-image").append(image)
                         }
-
                         $("#match").modal("show");
                     })
             }
