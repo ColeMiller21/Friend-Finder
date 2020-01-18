@@ -1,5 +1,11 @@
 # Friend-Finder
 
+<div align="left">
+    <img src="images/Friend Finder Original.png" width="400px"</img> 
+</div>
+<div align="left">
+    <img src="images/FriendFinder2.png" width="400px"</img> 
+</div>
 ## Table of Contents
 
 * [About the Project](#about-the-project)
